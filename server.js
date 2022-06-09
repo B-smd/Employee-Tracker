@@ -417,11 +417,10 @@ const updateManager = () => {
 // VIEW EMPLOYEE BY MANAGER
 const employeeManager = () => {
   console.log('Showing employees by manager...\n')
-  const sql = `SELECT employee.first_name, employee.last_name,
-                      manager.name AS employee
-               FROM employee
-               LEFT JOIN role ON employee.role_id = role.id
-               LEFT JOIN employee ON role.manager_id = manager.id`;
+  const sql = `SELECT emp1.first_name, emp1.last_name,
+                      concat(emp2.first_name," ",emp2.last_name) AS manager
+               FROM employee emp1
+               LEFT JOIN employee emp2 ON emp1.manager_id = emp2.id`;
     return connection.promise().query(sql)
     .then(([rows]) => {
      console.table(rows);
