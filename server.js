@@ -120,7 +120,7 @@ const showDepartments = () => {
 // VIEW ALL ROLES 
 const showRoles = () => {
   console.log('Showing all roles...\n')
-  const sql = `SELECT role.id, role.title, department.name AS department FROM role
+  const sql = `SELECT role.id, role.title, role.salary, department.name AS department FROM role
                INNER JOIN department ON role.department_id = department.id`;
   return connection.promise().query(sql)
     .then(([rows]) => {
@@ -414,6 +414,23 @@ const updateManager = () => {
     });
   });
 };
+// VIEW EMPLOYEE BY MANAGER
+const employeeManager = () => {
+  console.log('Showing employees by manager...\n')
+  const sql = `SELECT employee.first_name, employee.last_name,
+                      manager.name AS employee
+               FROM employee
+               LEFT JOIN role ON employee.role_id = role.id
+               LEFT JOIN employee ON role.manager_id = manager.id`;
+    return connection.promise().query(sql)
+    .then(([rows]) => {
+     console.table(rows);
+    })
+     .catch(error => {
+      throw error;
+    });
+};
+
 
 // VIEW EMPLOYEE BY DEPARTMENT
 const employeeDepartment = () => {
@@ -423,10 +440,13 @@ const employeeDepartment = () => {
                FROM employee
                       LEFT JOIN role ON employee.role_id = role.id
                       LEFT JOIN department ON role.department_id = department.id`;
-  return connection.promise().query(sql).then(rows => {
-    console.table(rows);
-
-  });
+    return connection.promise().query(sql)
+     .then(([rows]) => {
+      console.table(rows);
+    })
+      .catch(error => {
+       throw error;
+    });
 };
 
 // DELETE DEPARTMENT
@@ -517,9 +537,11 @@ const viewBudget = () => {
                       SUM(salary) AS budget
                FROM role
                       JOIN department ON role.department_id = department.id GROUP BY department_id`;
-  return connection.promise().query(sql, (err, rows) => {
-    if (err) throw err;
-    console.table(rows);
-
-  });
+    return connection.promise().query(sql)
+    .then(([rows]) => {
+      console.table(rows);
+    })
+    .catch(error => {
+      throw error;
+    })
 };
