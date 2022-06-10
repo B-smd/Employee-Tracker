@@ -44,7 +44,7 @@ const promptUser = () => {
         "Add an Employee",
         "Update an Employee Role",
         "Update Employee Managers",
-        "View All Employees by Manager",
+        "View Employees by Manager",
         "View Employees by Department",
         "Delete a Department",
         "Delete a role",
