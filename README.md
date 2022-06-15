@@ -59,6 +59,8 @@ Also the user can:
 
 - A walkthrough video on [Screencastify](https://drive.google.com/file/d/1VsD51oFTYQh9YmbeghLuB1HGBdEMqj--/view)
 
+![EMPLOYEE-TRACKER](./img/ScreenShot.png)
+
 ## Credits
 
 - [Simon-Xu-Lan](https://github.com/Simon-Xu-Lan)
