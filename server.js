@@ -78,7 +78,7 @@ const promptUser = () => {
     if (choices === "Update Employee Managers") {
       await updateManager();
     }
-    if (choices === "View Employees by Managers") {
+    if (choices === "View Employees by Manager") {
       await employeeManager();
     }
     if (choices === "View Employees by Department") {
